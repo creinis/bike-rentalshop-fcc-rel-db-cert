@@ -225,7 +225,8 @@ ALTER TABLE ONLY public.customers
 --
 -- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
-
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_pkey PRIMARY KEY (customer_id);
 
 --
 -- Name: rentals rentals_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
