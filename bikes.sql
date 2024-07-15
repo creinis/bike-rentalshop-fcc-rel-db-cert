@@ -231,7 +231,8 @@ ALTER TABLE ONLY public.customers
 --
 -- Name: rentals rentals_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
-
+ALTER TABLE ONLY public.rentals
+    ADD CONSTRAINT rentals_pkey PRIMARY KEY (rental_id);
 
 --
 -- Name: rentals rentals_bike_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: freecodecamp
