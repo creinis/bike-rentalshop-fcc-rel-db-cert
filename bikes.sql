@@ -213,7 +213,8 @@ SELECT pg_catalog.setval('public.rentals_rental_id_seq', 1, false);
 --
 -- Name: bikes bikes_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
-
+ALTER TABLE ONLY public.bikes
+    ADD CONSTRAINT bikes_pkey PRIMARY KEY (bike_id);
 
 --
 -- Name: customers customers_phone_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
