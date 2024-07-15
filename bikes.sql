@@ -154,16 +154,19 @@ ALTER SEQUENCE public.rentals_rental_id_seq OWNED BY public.rentals.rental_id;
 -- Name: bikes bike_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
+ALTER TABLE ONLY public.bikes ALTER COLUMN bike_id SET DEFAULT nextval('public.bikes_bike_id_seq'::regclass);
 
 --
 -- Name: customers customer_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
+ALTER TABLE ONLY public.customers ALTER COLUMN customer_id SET DEFAULT nextval('public.customers_customer_id_seq'::regclass);
 
 --
 -- Name: rentals rental_id; Type: DEFAULT; Schema: public; Owner: freecodecamp
 --
 
+ALTER TABLE ONLY public.rentals ALTER COLUMN rental_id SET DEFAULT nextval('public.rentals_rental_id_seq'::regclass);
 
 --
 -- Data for Name: bikes; Type: TABLE DATA; Schema: public; Owner: freecodecamp
