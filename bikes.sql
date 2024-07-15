@@ -47,6 +47,16 @@ SET default_table_access_method = heap;
 -- Name: bikes; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
+CREATE TABLE public.bikes (
+    bike_id integer NOT NULL,
+    type character varying(50) NOT NULL,
+    size integer NOT NULL,
+    available boolean DEFAULT true NOT NULL
+);
+
+
+ALTER TABLE public.bikes OWNER TO freecodecamp;
+
 
 --
 -- Name: bikes_bike_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
