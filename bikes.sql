@@ -80,10 +80,18 @@ ALTER TABLE public.bikes_bike_id_seq OWNER TO freecodecamp;
 
 ALTER SEQUENCE public.bikes_bike_id_seq OWNED BY public.bikes.bike_id;
 
-
 --
 -- Name: customers; Type: TABLE; Schema: public; Owner: freecodecamp
 --
+
+CREATE TABLE public.customers (
+    customer_id integer NOT NULL,
+    phone character varying(15) NOT NULL,
+    name character varying(40) NOT NULL
+);
+
+
+ALTER TABLE public.customers OWNER TO freecodecamp;
 
 --
 -- Name: customers_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
