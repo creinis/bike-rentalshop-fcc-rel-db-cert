@@ -198,17 +198,17 @@ INSERT INTO public.bikes VALUES (9, 'BMX', 21, true);
 --
 -- Name: bikes_bike_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
-
+SELECT pg_catalog.setval('public.bikes_bike_id_seq', 9, true);
 
 --
 -- Name: customers_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
-
+SELECT pg_catalog.setval('public.customers_customer_id_seq', 1, false);
 
 --
 -- Name: rentals_rental_id_seq; Type: SEQUENCE SET; Schema: public; Owner: freecodecamp
 --
-
+SELECT pg_catalog.setval('public.rentals_rental_id_seq', 1, false);
 
 --
 -- Name: bikes bikes_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
