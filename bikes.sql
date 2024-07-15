@@ -112,6 +112,7 @@ ALTER TABLE public.customers_customer_id_seq OWNER TO freecodecamp;
 -- Name: customers_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
+ALTER SEQUENCE public.customers_customer_id_seq OWNED BY public.customers.customer_id;
 
 --
 -- Name: rentals; Type: TABLE; Schema: public; Owner: freecodecamp
