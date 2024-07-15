@@ -21,7 +21,11 @@ DROP DATABASE bikes;
 --
 -- Name: bikes; Type: DATABASE; Schema: -; Owner: freecodecamp
 --
+CREATE DATABASE bikes WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'C.UTF-8' LC_CTYPE = 'C.UTF-8';
 
+ALTER DATABASE bikes OWNER TO freecodecamp;
+
+\connect bikes
 
 
 SET statement_timeout = 0;
