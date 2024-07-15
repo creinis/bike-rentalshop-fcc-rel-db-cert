@@ -78,6 +78,8 @@ ALTER TABLE public.bikes_bike_id_seq OWNER TO freecodecamp;
 -- Name: bikes_bike_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: freecodecamp
 --
 
+ALTER SEQUENCE public.bikes_bike_id_seq OWNED BY public.bikes.bike_id;
+
 
 --
 -- Name: customers; Type: TABLE; Schema: public; Owner: freecodecamp
