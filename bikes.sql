@@ -118,6 +118,16 @@ ALTER SEQUENCE public.customers_customer_id_seq OWNED BY public.customers.custom
 -- Name: rentals; Type: TABLE; Schema: public; Owner: freecodecamp
 --
 
+CREATE TABLE public.rentals (
+    rental_id integer NOT NULL,
+    customer_id integer NOT NULL,
+    bike_id integer NOT NULL,
+    date_rented date DEFAULT now() NOT NULL,
+    date_returned date NOT NULL
+);
+
+
+ALTER TABLE public.rentals OWNER TO freecodecamp;
 
 --
 -- Name: rentals_rental_id_seq; Type: SEQUENCE; Schema: public; Owner: freecodecamp
