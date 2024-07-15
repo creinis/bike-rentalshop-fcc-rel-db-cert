@@ -219,7 +219,8 @@ ALTER TABLE ONLY public.bikes
 --
 -- Name: customers customers_phone_key; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
 --
-
+ALTER TABLE ONLY public.customers
+    ADD CONSTRAINT customers_phone_key UNIQUE (phone);
 
 --
 -- Name: customers customers_pkey; Type: CONSTRAINT; Schema: public; Owner: freecodecamp
