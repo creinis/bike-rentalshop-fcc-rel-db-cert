@@ -88,6 +88,8 @@ RENT_MENU() {
         BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id='$BIKE_ID_TO_RENT'")
         BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
 
+        # send to main menu
+        MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')."
         
       fi
     fi
