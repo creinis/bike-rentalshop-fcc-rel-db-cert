@@ -26,6 +26,10 @@ MAIN_MENU() {
     esac
 }
 
+RENT_MENU() {
+    
+}
+
 RETURN_MENU() {
 }
 
