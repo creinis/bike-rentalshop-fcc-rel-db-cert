@@ -28,72 +28,72 @@ MAIN_MENU() {
 
 RENT_MENU() {
 
-# get available bikes
-  AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
+    # get available bikes
+    AVAILABLE_BIKES=$($PSQL "SELECT bike_id, type, size FROM bikes WHERE available = true ORDER BY bike_id")
 
-# if no bikes available
-  if [[ -z $AVAILABLE_BIKES ]]
-  then
-    # send to main menu
-    MAIN_MENU "Sorry, we don't have any bikes available right now."
-  else
-    # display available bikes
-    echo -e "\nHere are the bikes we have available:"
-    echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
-    do
-      echo "$BIKE_ID) $SIZE\" $TYPE Bike"
-    done
-
-    # ask for bike to rent
-    echo -e "\nWhich one would you like to rent?"
-    read BIKE_ID_TO_RENT
-
-    # if input is not a number
-    if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
+    # if no bikes available
+    if [[ -z $AVAILABLE_BIKES ]]
     then
-      # send to main menu
-      MAIN_MENU "That is not a valid bike number."
+        # send to main menu
+        MAIN_MENU "Sorry, we don't have any bikes available right now."
     else
-      # get bike availability
-      BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true")
-    # if not available
-      if [[ -z $BIKE_AVAILABILITY ]]
-      then
-        # send to main menu
-        MAIN_MENU "That bike is not available."
-      else
-        # get customer info
-        echo -e "\nWhat's your phone number?"
-        read PHONE_NUMBER
-        CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER'")
-        # if customer doesn't exist
-        if [[ -z $CUSTOMER_NAME ]]
+        # display available bikes
+        echo -e "\nHere are the bikes we have available:"
+        echo "$AVAILABLE_BIKES" | while read BIKE_ID BAR TYPE BAR SIZE
+        do
+        echo "$BIKE_ID) $SIZE\" $TYPE Bike"
+        done
+
+        # ask for bike to rent
+        echo -e "\nWhich one would you like to rent?"
+        read BIKE_ID_TO_RENT
+
+        # if input is not a number
+        if [[ ! $BIKE_ID_TO_RENT =~ ^[0-9]+$ ]]
         then
-        # get new customer name 
-        echo -e "\nWhat's your name?"
-        read CUSTOMER_NAME
-        # insert new customer
-        INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER', '$CUSTOMER_NAME')")
-        fi
-        # get customer_id
-        CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
-
-        # insert bike rental
-        INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID', '$BIKE_ID_TO_RENT')")
-
-        # set bike availability to false
-        SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available='false' WHERE bike_id = '$BIKE_ID_TO_RENT'")
-
-        # get bike info
-        BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id='$BIKE_ID_TO_RENT'")
-        BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
-
         # send to main menu
-        MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')."
-        
-      fi
+        MAIN_MENU "That is not a valid bike number."
+        else
+        # get bike availability
+        BIKE_AVAILABILITY=$($PSQL "SELECT available FROM bikes WHERE bike_id = $BIKE_ID_TO_RENT AND available = true")
+        # if not available
+        if [[ -z $BIKE_AVAILABILITY ]]
+        then
+            # send to main menu
+            MAIN_MENU "That bike is not available."
+        else
+            # get customer info
+            echo -e "\nWhat's your phone number?"
+            read PHONE_NUMBER
+            CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER'")
+            # if customer doesn't exist
+            if [[ -z $CUSTOMER_NAME ]]
+            then
+            # get new customer name 
+            echo -e "\nWhat's your name?"
+            read CUSTOMER_NAME
+            # insert new customer
+            INSERT_CUSTOMER_RESULT=$($PSQL "INSERT INTO customers(phone, name) VALUES('$PHONE_NUMBER', '$CUSTOMER_NAME')")
+            fi
+            # get customer_id
+            CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
+
+            # insert bike rental
+            INSERT_RENTAL_RESULT=$($PSQL "INSERT INTO rentals(customer_id, bike_id) VALUES('$CUSTOMER_ID', '$BIKE_ID_TO_RENT')")
+
+            # set bike availability to false
+            SET_TO_FALSE_RESULT=$($PSQL "UPDATE bikes SET available='false' WHERE bike_id = '$BIKE_ID_TO_RENT'")
+
+            # get bike info
+            BIKE_INFO=$($PSQL "SELECT size, type FROM bikes WHERE bike_id='$BIKE_ID_TO_RENT'")
+            BIKE_INFO_FORMATTED=$(echo $BIKE_INFO | sed 's/ |/"/')
+
+            # send to main menu
+            MAIN_MENU "I have put you down for the $BIKE_INFO_FORMATTED Bike, $(echo $CUSTOMER_NAME | sed -E 's/^ *| *$//g')."
+            
+        fi
+        fi
     fi
-  fi
 }
 
 RETURN_MENU() {
