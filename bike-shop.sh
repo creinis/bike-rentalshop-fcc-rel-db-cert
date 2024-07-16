@@ -12,6 +12,13 @@ MAIN_MENU() {
         2. Return a bike\n
         3. Exit"
     read MAIN_MENU_SELECTION
+
+    case $MAIN_MENU_SELECTION in
+        1) RENT_MENU ;;
+        2) RETURN_MENU ;;
+        3) EXIT ;;
+        *) MAIN_MENU "Please enter a valid option." ;;
+    esac
 }
 
 RETURN_MENU() {
