@@ -63,6 +63,10 @@ RENT_MENU() {
         MAIN_MENU "That bike is not available."
       else
         # get customer info
+        echo -e "\nWhat's your phone number?"
+        read PHONE_NUMBER
+        CUSTOMER_NAME=$($PSQL "SELECT name FROM customers WHERE phone = '$PHONE_NUMBER'")
+        
 
 }
 
