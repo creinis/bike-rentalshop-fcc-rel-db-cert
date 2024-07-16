@@ -101,7 +101,15 @@ RETURN_MENU() {
     echo -e "\nWhat's your phone number?"
     read PHONE_NUMBER
     CUSTOMER_ID=$($PSQL "SELECT customer_id FROM customers WHERE phone = '$PHONE_NUMBER'")
-    
+    # if not found
+    if [[ -z $CUSTOMER_ID ]]
+    then
+    # send to main menu
+    MAIN_MENU "I could not find a record for that phone number."
+    else 
+    # get customer's rentals
+    CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id")
+
 }
 
 EXIT() {
