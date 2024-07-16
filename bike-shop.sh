@@ -120,7 +120,11 @@ RETURN_MENU() {
         echo "$CUSTOMER_RENTALS" | while read BIKE_ID BAR TYPE BAR SIZE
         do
         echo "$BIKE_ID) $SIZE\" $TYPE Bike"
-        done                            
+        done
+        # ask for bike to return
+        echo -e "\nWhich one would you like to return?"
+        read BIKE_ID_TO_RETURN
+        
 }
 
 EXIT() {
