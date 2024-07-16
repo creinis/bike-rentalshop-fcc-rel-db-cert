@@ -109,7 +109,7 @@ RETURN_MENU() {
     else 
     # get customer's rentals
     CUSTOMER_RENTALS=$($PSQL "SELECT bike_id, type, size FROM bikes INNER JOIN rentals USING(bike_id) INNER JOIN customers USING(customer_id) WHERE phone = '$PHONE_NUMBER' AND date_returned IS NULL ORDER BY bike_id")
-    # if no rentals
+        # if no rentals
         if [[ -z $CUSTOMER_RENTALS ]]
         then
         # send to main menu
@@ -141,6 +141,11 @@ RETURN_MENU() {
                 # update date_returned
                 RETURN_BIKE_RESULT=$($PSQL "UPDATE rentals SET date_returned = NOW() WHERE rental_id = $RENTAL_ID")
 
+
+                fi
+            fi
+        fi
+    fi
 }
 
 EXIT() {
